@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football</title>
+    <style>
+        /* body{
+            background-image: url('football1.jpg');
+            box-sizing: border-box;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            
+        } */
+        body {
+            box-sizing: border-box;
+            height: 715px;
+            margin: 0px;
+        }
+
+        div.background {
+            background: url(football1.jpg) repeat;
+            border: 2px solid black;
+            /* opacity: 0.6; */
+            height: 100%;
+            filter: blur(10px);
+        }
+
+        .head {
+            position: absolute;
+            left: 680px;
+            top: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            top: 160px;
+            width: 100%;
+        }
+
+        .team {
+            border: 1px solid black;
+            background-color: rgba(250, 250, 250, 0.3);
+
+            color: black;
+            font-weight: bold;
+            width: 500px;
+            text-align: center;
+        }
+
+        button {
+
+            background-color: rgb(31, 11, 66);
+            color: white;
+            border-radius: 5px;
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: auto;
+            font-size: 20px;
+        }
+
+        /* #team1{
+            border: 1px solid white;
+            color: white;
+
+        }
+        #team2{
+            border: 1px solid white;
+            color: white;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="background">
+
+    </div>
+    <div class="head">
+        <h1>FOOTBALL</h1>
+    </div>
+    <div class="flex">
+        <div class="team" id="team1">
+            <h1>TEAM A</h1>
+            <h2>Current Score</h2>
+            <h2 id="count1">0</h2>
+            <button id="increment1" onclick="incre1()">INCREMENT</button><br>
+            <button id="save1" onclick="save1()">SAVE</button>
+            <h2>Score Status:</h2>
+            <h2 id="string1"></h2>
+            <h2>Total Score:</h2>
+            <h2 id="total1"></h2>
+        </div>
+        <div class="team" id="team2">
+            <h1>TEAM B</h1>
+            <h2>Current Score</h2>
+            <h2 id="count2">0</h2>
+            <button id="increment2" onclick="incre2()">INCREMENT</button><br>
+            <button id="save2" onclick="save2()">SAVE</button>
+            <h2>Score Status:</h2>
+            <h2 id="string2"></h2>
+            <h2>Total Score:</h2>
+            <h2 id="total2"></h2>
+        </div>
+    </div>
+    <script>
+        
+        let count1=0;
+        let total1=0;
+        let sum1="";
+        function incre1(){
+            let s=count1.toString();
+            count1=count1+1;
+            document.getElementById("count1").innerHTML=count1;
+            
+        }
+        function save1(){
+            total1=total1+count1;
+            if(sum1 == ""){
+                sum1=sum1+count1;
+            }
+            else{
+                sum1 = sum1+" "+count1;
+            }
+            
+            document.getElementById("string1").innerHTML=sum1;
+            count1=0;
+            document.getElementById("count1").innerHTML=count1;
+            document.getElementById("total1").innerHTML=total1;
+            
+        }
+
+
+        let count2=0;
+        let total2=0;
+        let sum2="";
+        function incre2(){
+            let s=count2.toString();
+            count2=count2+1;
+            document.getElementById("count2").innerHTML=count2;
+            
+        }
+        function save2(){
+            total2=total2+count2;
+            if(sum2 == ""){
+                sum2=sum2+count2;
+            }
+            else{
+                sum2 = sum2+" "+count2;
+            }
+            
+            document.getElementById("string2").innerHTML=sum2;
+            count2=0;
+            document.getElementById("count2").innerHTML=count2;
+            document.getElementById("total2").innerHTML=total2;
+            
+        }
+
+    </script>
+</body>
+
+</html>

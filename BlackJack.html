@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Jack</title>
+    <style>
+        body {
+            background-color: green;
+            color: white;
+        }
+
+        .head {
+            color: goldenrod;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        #cards {
+            text-align: center;
+        }
+
+        #sum {
+            text-align: center;
+            color: white;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 5px;
+            background-color: goldenrod;
+            color: green;
+            margin: 10px;
+            border-color: gold;
+            font-weight: bold;
+        }
+
+        #per {
+            text-align: center;
+        }
+
+        h2 {
+            display: inline;
+        }
+
+        h2 p {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <h1>BLACKJACK</h1>
+    </div>
+    <p id="result">Want to draw a new card </p>
+    <div id="cards">
+        <h2>Cards:
+            <p id="car"></p>
+        </h2>
+    </div>
+    <div id="sum">
+        <h2>Sum:
+            <p id="su"></p>
+        </h2>
+    </div>
+    <div class="btn">
+
+
+        <button id="start" class="button" onclick="startGame()">START GAME</button>
+        <button id="new" class="button" onclick="newCard()">NEW CARD</button>
+
+    </div>
+    <div id="per">
+        <h2 id="player"></h2> 
+    </div>
+
+
+    <script>
+
+
+        let cards=[]
+        let s=0
+        let hasBlackJack = false;
+        let isAlive = false;
+        let message = "";
+        let messageEl = document.getElementById("result");
+        let sumEl = document.getElementById("su");
+        let carEl = document.getElementById("car")
+        let player={
+            playerName:"per",
+            playerChips:200
+        }
+
+        let playerEl=document.getElementById("player")
+        function startGame() {
+            let firstCard = getRamdomCard();
+            let secondCard = getRamdomCard();
+            cards = [firstCard, secondCard]
+            s = firstCard + secondCard;
+            playerEl.textContent=player.playerName+": $ 0"
+            
+            isAlive = true
+            renderGame();
+        }
+
+        function renderGame() {
+            // console.log(s)
+            let str = ""
+            for (let i = 0; i < cards.length; i++) {
+                str += cards[i] + " "
+
+            }
+            carEl.textContent = str
+            sumEl.textContent = s
+            if (s < 21) {
+                message = "Do you want to draw a new card?";
+                playerEl.textContent=player.playerName+": $ 50"
+            }
+            else if (s === 21) {
+                message = "You've got Blackjack!!";
+                hasBlackJack = true;
+                playerEl.textContent=player.playerName+": $ "+player.playerChips
+            }
+            else {
+                message = "You're out of the game";
+                playerEl.textContent=player.playerName+": $ 0"
+                isAlive = false;
+            }
+            messageEl.textContent = message
+        }
+        // function disable() {
+        //     document.getElementById("new").disabled = true
+        // }
+        function newCard() {
+            if(isAlive===true && hasBlackJack===false){
+
+                let card = getRamdomCard()
+                cards.push(card)
+                console.log(cards)
+                s = s + card
+                renderGame();
+            }
+        }
+        function getRamdomCard() {
+            return 1 + Math.floor(Math.random() * 11)
+        }
+    </script>
+</body>
+
+</html>
